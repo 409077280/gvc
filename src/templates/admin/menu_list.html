@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut  icon" href="/static/images/favicon.ico" type="image/x-icon" />
+  <meta charset="utf-8">
+  <!--刷新重定向
+  <meta http-equiv="refresh" content="0;url=https://www.cudag.com/"> 
+-->
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=0.33, maximum-scale=1, minimum-scale=0.33, user-scalable=yes">
+  <meta name="robots" content="all">
+  <meta name="author" content="L.M-Agnese">
+  <meta name="baidu-site-verification" content="dV6drpEsrB">
+  <meta name="Copyright" content="WeiXingShiShang">
+  <meta name="Description" content="简爱格妮斯内部管理系统">
+  <title>链爱商城后台管理</title>
+  <link rel="stylesheet" type="text/css" href="/static/layui/css/layui.css" />
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+
+
+  <!-- 头部区域（可配合layui已有的水平导航） --> 
+
+  <div class="layui-header">
+  	<a href="__ROOT__/" style="height: 60px;width: 200px;margin-left: 0">
+		<img src="/static/images/logo.jpg" style="width: 200px;height: 60px">
+  	</a>
+	 
+	<!--display or hide menu-->	
+	<!--
+	<div class="hideMenu" style="height: 100%">
+		<ul class="layui-nav layui-layout-left">
+			<li class="layui-nav-item">
+	          	<a href="javascript:;" class="iconfont hideMenu icon-menu1">
+					sgagadslksdagljk
+				</a>
+	      	</li>
+		</ul>
+	</div>
+	-->
+	<!-- guide list-->
+    <ul class="layui-nav layui-layout-left"> 
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <!--显示用户名-->
+        <a href="javascript:;" style="color: #11e297">&nbsp;-&nbsp;</a>
+        <dl class="layui-nav-child">
+          <dd><a href="">用户信息</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="/index/login">退出登录</a></li>
+    </ul>
+  </div>
+
+  <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+  <div class="layui-side layui-bg-black" style="color: white">
+    <div class="layui-side-scroll" style="color: white">
+      <!-- 垂直导航 -->
+    <ul class="layui-nav layui-nav-tree" lay-shrink="all">
+      <li class="layui-nav-item" id="{$menu.id}">
+        <!--一级菜单名-->
+        <a href="javascript:;" style="font-family: '楷体'; font-size: 1.2em" ><i class="layui-icon">{{ .field}}</i>&nbsp;&nbsp;</a>
+        <ul class="layui-nav-child">
+          {volist name="menu.son" id="son_menu"}
+          <li class="layui-nav-item" id="{$son_menu.id}">
+            <!--二级菜单名-->
+            <a href="javascript:;" style="margin-left: 20px; font-family: '黑体';font-size: 1em;" ><i class="layui-icon">{$son_menu.ico}</i>&nbsp;&nbsp;{$son_menu.name}</a>
+            <ul class="layui-nav-child">
+              {volist name="son_menu.son" id="son_son_menu"}
+              <li id="{$son_son_menu.id}">
+                <!--三级菜单名-->
+                <a href="{$son_son_menu.url}" class="storage" style="margin-left: 30px;"><i class="layui-icon">&#xe623;</i>&nbsp;&nbsp;{$son_son_menu.name}</a>
+              </li>
+              {/volist}
+            </ul>
+          </li>
+          {/volist}
+        </ul>
+      </li>
+
+    </ul>
+
+    </div>
+  </div>
+
+<!--内容主体-->
+<div class="layui-body">
+    <!--内容导航-->
+<div class="layui-row" style="background: black;height: 45px; border-left: 0.5px solid white;">
+  
+<span  style="margin-left: 15px; line-height: 45px" class="layui-breadcrumb" lay-separator="-">
+  <a href="javascript:;"><span style="color:white;">系统设置</span></a>
+  <a href="javascript:;"><span style="color:white;">菜单设置</span></a>
+  <a href="javascript:;"><span style="color:white;">菜单列表</span></a>
+</span>
+{/block}
+
+
+{block name="data"}
+<a class="layui-btn" href="__ROOT__/index/system/menu_add/parent_id/{$parent_id}/level/{$level}">
+    <i class="layui-icon">&#xe654;</i> 添加&nbsp;&nbsp;<span style="color: red">{$level}</span>&nbsp;&nbsp;级菜单&nbsp;|&nbsp;功能
+</a>
+
+<button type="reset" class="layui-btn layui-btn-warm" onclick="window.history.back(-1);">返回上一页</button>
+<!-- 数据表格 -->
+<table class="layui-hide" id="data" lay-filter="table"></table>
+
+{/block}
+
+{block name="script"}
+<!--图标-->
+<script type="text/html" id="icoDisplay">
+<i class="layui-icon">{{d.ico}}</i>
+</script>
+
+</script>
+<!--状态-->
+<script type="text/html" id="menuStatus">
+  <input type="checkbox" menuId={{d.id}} lay-skin="switch" lay-text=" 启|停" lay-filter="status" {{ d.status == 1 ? 'checked' : '' }}>
+</script>
+
+<!--类型-->
+<script type="text/html" id="menuType">
+<label style="color: green;font-size: 1.1em">
+<input type="radio" name="{{d.id}}" lay-ignore="" value="0" onclick="check(this)" {{ d.type == 0? 'checked':''}}>
+菜单</label>
+<label style="color: #FF5722;font-size: 1.1em;margin-left: 10px">
+<input type="radio" name="{{d.id}}" lay-ignore="" value="1" onclick="check(this)" {{ d.type == 1? 'checked':''}}>
+功能</label>
+	  
+</script>
+
+<!--操作-->
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">子菜单</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">更改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script>
+/*导航动态*/
+layui.use('element', function(){
+  var element = layui.element;
+});
+/*数据表格*/
+layui.use('table', function(){
+  var table = layui.table;
+        /*渲染*/
+        table.render({
+          elem: '#data'
+          ,url:'__ROOT__/index/system/menu_data/parent_id/{$parent_id}'
+          ,cols: [[
+            {field:'id', width:60, title: 'ID', sort: true, align:'center'}
+            ,{field:'name', width:120, title: '名称', edit:'text', align:'center'}
+            ,{field:'parent_id', width:80, title: '父ID', align:'center'}
+            ,{field:'url', width:180, title: 'Url', edit:'text', align:'center'}
+            ,{field:'ico', width:120, title: '图标', edit:'text',templet:'#icoDisplay', align:'center'}
+            ,{field:'controller', width:180, title: '控制器', edit:'text', align:'center'}
+            ,{field:'function', width:150, title: '方法', edit:'text', align:'center'}
+            ,{field:'sort', width:100, title: '排序', edit:'text', sort:true, align:'center'}
+            ,{field:'level', width:100, title: '层级', align:'center'}
+            ,{field:'type', width:150, title: '类型', templet:'#menuType', align:'center'}
+            ,{field:'status', width:100, title: '使用状态', templet:'#menuStatus', align:'center'}
+            ,{field:'create_time', width:160, title: '创建时间', align:'center',templet: '<div>{{ layui.laytpl.toDateString(d.create_time) }}</div>',sort:true}
+            ,{field:'', width:180, title: '操作', align:'center', toolbar: '#barDemo'}
+          ]]
+          ,page: true
+        });
+        /*重载*/
+
+
+        /*时间戳的处理*/
+    layui.laytpl.toDateString = function(d, format){
+      if (d==null) return '';
+      d = d*1000
+      var date = new Date(d || new Date())
+      ,ymd = [
+        this.digit(date.getFullYear(), 4)
+        ,this.digit(date.getMonth() + 1)
+        ,this.digit(date.getDate())
+      ]
+      ,hms = [
+        this.digit(date.getHours())
+        ,this.digit(date.getMinutes())
+        ,this.digit(date.getSeconds())
+      ];
+
+      format = format || 'yyyy-MM-dd HH:mm:ss';
+
+      return format.replace(/yyyy/g, ymd[0])
+      .replace(/MM/g, ymd[1])
+      .replace(/dd/g, ymd[2])
+      .replace(/HH/g, hms[0])
+      .replace(/mm/g, hms[1])
+      .replace(/ss/g, hms[2]);
+    };
+    //数字前置补零
+    layui.laytpl.digit = function(num, length, end){
+      var str = '';
+      num = String(num);
+      length = length || 2;
+      for(var i = num.length; i < length; i++){
+        str += '0';
+      }
+      return num < Math.pow(10, length) ? str + (num|0) : num;
+    };
+
+
+        /*监听工具条*/
+        table.on('tool(table)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+          var data = obj.data; //获得当前行数据
+          var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+          var tr = obj.tr; //获得当前行 tr 的DOM对象
+         
+          if(layEvent === 'detail'){
+            var url = "__ROOT__/index/system/menu_list/parent_id/"+data.id+"/level/"+(data.level+1);
+            window.location.assign(url);
+          } 
+          else if(layEvent === 'del'){ //删除
+            layer.confirm('确认删除？', function(index){
+                $.ajax({
+              cache: false,
+              type: "POST",
+              url:'__ROOT__/index/system/menu_delete',
+              data:{
+                id: data.id
+                },
+              async: false,
+              error: function() {
+                  layer.msg('连接服务器失败');
+              },
+              success: function(response) {
+                if (response.code==1) {
+                   layer.msg(response.msg);
+                   obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                   layer.close(index);
+                }
+                else layer.msg(response.msg);
+            }
+            });
+            });
+          } 
+          else if(layEvent === 'edit'){ //编辑
+              layer.confirm('确认修改？', function(index){
+                $.ajax({
+                cache: false,
+                type: "POST",
+                url:'__ROOT__/index/system/menu_edit',
+                data:{data:data},
+                async: false,
+                error: function() {
+                    layer.msg('连接服务器失败');
+                },
+                success: function(response) {
+                  if (response.code==1) {
+                    layer.msg(response.msg);
+                  }
+                  else layer.msg(response.msg);
+              }
+            });
+            });
+            
+          }
+        });
+
+  //监听菜单状态操作
+  layui.form.on('switch(status)', function(obj){
+	 var id = $(this).attr('menuId');
+	 var status;
+	 obj.elem.checked?status=1:status=0;
+	 var data = {id: id, status: status};
+	      $.ajax({
+	        cache: false,
+	        type: "POST",
+	        url:'__ROOT__/index/system/menu_edit',
+	        data:{data:data},
+	        async: false,
+	        error: function() {
+	            layer.msg('连接服务器失败或错误');
+	        },
+	        success: function(response) {
+	        	  if (response.code==1) {
+                    layer.tips(response.msg, obj.othis);
+                  }
+                  else layer.tips(response.msg, obj.othis);
+	        }
+	      });
+	 $(this).attr("checked",false);
+  });
+
+});
+
+/*menuType changed*/
+function check(browser){
+  var type = browser.value;
+  var id = browser.name;
+  var data = {id: id, type: type};
+  		$.ajax({
+        cache: false,
+        type: "POST",
+        url:'__ROOT__/index/system/menu_edit',
+        data:{data:data},
+        async: false,
+        error: function() {
+            layer.msg('连接服务器失败或错误');
+        },
+        success: function(response) {
+        	layer.tips(response.msg, browser);
+        	return;
+        }
+      });
+}
+</script>
+{/block}
+{{ end }}

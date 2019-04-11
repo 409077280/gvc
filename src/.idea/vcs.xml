@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/github.com/bradfitz/gomemcache" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/dgrijalva/jwt-go" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/gin-contrib/cache" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/gin-contrib/cors" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/gin-contrib/pprof" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/gin-contrib/sessions" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/gin-contrib/sse" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/gin-gonic/gin" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/golang/net" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/golang/protobuf" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/golang/sync" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/gomodule/redigo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/gorilla/context" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/gorilla/securecookie" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/gorilla/sessions" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/lib/pq" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/mattn/go-isatty" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/memcachier/mc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/robfig/go-cache" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/github.com/ugorji/go" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/golang.org/x/net" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/golang.org/x/protobuf" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/golang.org/x/sync" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/gopkg.in/go-playground/validator.v8" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/gopkg.in/yaml.v2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/static/ztree3/zTree_v3" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/templates/static/ztree3/zTree_v3" vcs="Git" />
+  </component>
+</project>

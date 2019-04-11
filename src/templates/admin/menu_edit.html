@@ -1,0 +1,145 @@
+{{ define "admin/menu_add.html" }}
+{extend name="public/base" /}
+
+{block name="breadcrumb"}
+<span  style="margin-left: 15px; line-height: 45px" class="layui-breadcrumb" lay-separator="-">
+  <a href="javascript:;"><span style="color:white;">系统设置</span></a>
+  <a href="javascript:;"><span style="color:white;">菜单设置</span></a>
+  <a href="javascript:;"><span style="color:white;">菜单列表</span></a>
+</span>
+{/block}
+
+{block name="data"}
+
+<!-- 表单 -->
+<form id="form" class="layui-form layui-form-pane">
+  <div class="layui-form-item">
+    <label class="layui-form-label">名称</label>
+    <div class="layui-input-block">
+      <input type="text" name="name" required  lay-verify="required" placeholder="请填写" autocomplete="off" class="layui-input" oninput="javascript:if(value.length>10)value=value.slice(0,10)">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">父级ID</label>
+    <div class="layui-input-block">
+      <input type="number" name="parent_id" required  lay-verify="required" placeholder="请填写" autocomplete="off" class="layui-input" readonly="" value="{$parent_id}">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">链接</label>
+    <div class="layui-input-block">
+      <input type="text" name="url" required  lay-verify="required" placeholder="请填写" autocomplete="off" class="layui-input" oninput="javascript:if(value.length>50)value=value.slice(0,50)">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">图标</label>
+    <div class="layui-input-block">
+      <input type="text" name="ico"  placeholder="请填写" autocomplete="off" class="layui-input" oninput="javascript:if(value.length>30)value=value.slice(0,30)">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">控制器</label>
+    <div class="layui-input-block">
+      <input type="text" name="controller"  placeholder="请填写" autocomplete="off" class="layui-input" oninput="javascript:if(value.length>40)value=value.slice(0,40)">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">方法</label>
+    <div class="layui-input-block">
+      <input type="text" name="function"  placeholder="请填写" autocomplete="off" class="layui-input" oninput="javascript:if(value.length>40)value=value.slice(0,40)">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">排序</label>
+    <div class="layui-input-block">
+      <input type="number" name="sort" required  lay-verify="required" placeholder="请填写" autocomplete="off" class="layui-input" oninput="javascript:if(value.length>2)value=value.slice(0,2)">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">层级</label>
+    <div class="layui-input-block">
+      <input type="number" name="level" required  lay-verify="required" placeholder="请填写" autocomplete="off" class="layui-input" readonly="" value="{$level}">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">类型</label>
+    <div class="layui-input-block">
+    <select name="type">
+      <option value="0" selected>菜单控制</option>
+      <option value="1">功能控制</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">使用状态</label>
+    <div class="layui-input-block">
+    <select name="status">
+      <option value="0">禁用</option>
+      <option value="1" selected>启用</option>
+    </select>
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-warm" onclick="window.history.back(-1);">返回上一页</button>
+    </div>
+  </div>
+</form>
+
+{/block}
+
+{block name="script"}
+
+<script>
+/*导航动态*/
+layui.use('element', function(){
+  var element = layui.element;
+});
+/*表单提交*/
+layui.use('form', function(){
+  var form = layui.form;
+  
+/*监听提交*/
+  form.on('submit(formDemo)', function(data){
+   
+
+/*AJAX表单提交*/
+  $.ajax({
+  cache: false,
+  type: "POST",
+  url:'__ROOT__/index/system/menu_insert',
+  data:$('#form').serialize(),// 你的form_id
+  async: false,
+  error: function() {
+      layer.msg('连接服务器失败或操作错误');
+  },
+  success: function(msg) {
+    if (msg == 1) {
+            layer.msg('添加成功');
+            setTimeout(
+              /*assign有返回，replace没有返回*/
+              function () { window.location.assign("__ROOT__/index/system/menu_list/parent_id/{$parent_id}/level/{$level}") },
+              2000);
+    }
+    else layer.msg('添加失败');
+  }
+  });
+  /*阻止表单提交导致的页面刷新,等同于onsubmit="return false"*/
+  return false;
+});
+});
+
+</script>
+{/block}
+{{ end }}

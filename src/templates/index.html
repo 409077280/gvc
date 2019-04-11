@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ .title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="链爱商城,链爱,链爱手机,链爱超级电视,链爱超级手机,链爱电视,链爱网,latv">
+    <meta name="description" content="链爱商城（链爱超级手机，超级电视，链爱网会员官方销售平台）是链爱超级手机，超级电视，链爱智能硬件，链爱配件等产品的官方线上销售平台。链爱商城是基于“平台+内容+终端+应用”垂直整合链爱生态，打造的全球生态型电商平台。">
+    <link rel="canonical" href="javascript:void(0)http://m.lemall.com/">
+    <link href="/static/css/stylesheet.css" rel="stylesheet"/>
+    <link href="/static/css/global.css" rel="stylesheet"/>
+</head>
+<body>
+<div id="globalHeaderBox">
+    <header class="header" rel="default">
+        <div class="h_box sou_header">
+            <div class="sou_home">
+                <a class="icon v_m inline_block" style="height:100%; width:100%;" onclick="javascript:history.back(-1);" href="">
+                    <em class="icon icon-back " ></em>
+                </a>
+            </div>
+            <h1 class="titleName"><em>会员中心</em></h1>
+            <div class="pointBox category-he" >
+                <span class="dotBox"><em class="icon icon-sdk"></em></span>
+            </div>
+        </div>
+    </header>
+</div>
+
+
+<div class="viewport" id="viewPort">
+	<div class="Myheader" id="userInfoBox">
+    	<dl class="uesr_head h_box" id="userInfo">
+        <dt class="head_img">
+          <span class="vipImg"></span>
+          <img src="/static/images/no_login.jpg" alt="" />
+        </dt>
+        <dd class="login_not" rel="noLogin">
+          <span  class="login_not inline_block"><em class="font30">登录</em><em class="pl10"></em><em class="font30">注册</em></span>
+          <span class="pt18 block">
+            <em class="font22">登录后查看个人信息</em>
+          </span>
+      </dd>
+    	</dl>
+    </div>
+    <div class="order_no" id="orderList">
+    </div>
+    <!-- 全部订单-->
+    <div class="mineBox">
+        <a href="javascript:void(0)http:html5" class="list next_select bd_df1">
+          <span><em>全部订单</em></span>
+          <i><em>查看全部订单</em></i>
+        </a>
+        <div class="orderList">
+            <ul class="h_box">
+                <li>
+                  <a href="http://m.lemall.com/orders/index.html?page_flag=ordercenter&amp;need_goback=1&amp;status=1" id="dfkHref">
+                    <span><img src="/static/images/waiting_pay.jpg" alt=""><i class="amount" id="dfkDiv" style="display:none"><b><em id="dfkNum">0</em></b></i></span>
+                    <p><em>待付款</em></p>
+                  </a>
+                </li>
+                <!-- <li>
+                  <a href="">
+                    <span><img src="//img0-lemall.letvimg.com/wap/20160318/default/4948274581575953" alt="" /></span>
+                    <p><em>待发货</em></p>
+                  </a>
+                </li> -->
+                <li>
+                  <a href="http://m.lemall.com/orders/index.html?page_flag=ordercenter&amp;need_goback=1&amp;status=2" id="dshHref">
+                    <span><img src="/static/images/waiting_get.jpg" alt=""><i class="amount" id="dshDiv" style="display:none"><b><em id="dshNum">0</em></b></i></span>
+                    <p><em>待收货</em></p>
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <span><img src="/static/images/waiting_comment.jpg" alt="" /><i class="amount"><b><em>12</em></b></i></span>
+                    <p><em>待评价</em></p>
+                  </a>
+                </li>
+                  <li>
+                      <a href="http://m.lemall.com/refunds/index.html?need_goback=1">
+                          <span><img src="/static/images/waiting_exchange.jpg" alt=""></span>
+                          <p><em>退货/换货</em></p>
+                      </a>
+                  </li>
+              </ul>
+        </div>
+    </div>
+    <!-- 全部订单 end-->
+    <!--我的资产-->
+    <div class="mineBox">
+        <a href="javascript:void(0)" class="list bd_bc1">
+          <span><em>我的资产</em></span>
+        </a>
+        <div class="zichanlist">
+            <ul class="h_box">
+                <li class="bd_rc1">
+                    <a href="javascript:void(0);" id="yhqHref">
+                        <b><em id="yhqNum">0</em></b>
+                        <span><em>当前积分</em></span>
+                    </a>
+              </li><li class="bd_rc1">
+                <a href="javascript:void(0);" id="cardHref">
+                  <b><em id="cardNum">0</em></b>
+                  <span><em>提现减免</em></span>
+                </a>
+              </li>
+              <li class="bd_rc1">
+                    <a href="javascript:void(0);" id="leecoHref">
+                        <b><em id="leeco">0</em></b>
+                        <span><em>购物优惠</em></span>
+                    </a>
+                </li>
+            <li>
+                <a href="javascript:void(0);" id="ldHref">
+                    <b><em id="ldNum">0</em></b>
+                    <span><em>返利比列</em></span>
+                </a>
+            </li>
+            </ul>
+        </div>
+    </div>
+    <!--我的资产 end-->
+    <div class="mineBox">
+        <a href="/shop/buyvip.html" class="list next_select">
+            <div class="bd_bc1 heiauto">
+            <span><em>购买VIP</em></span>
+            <i><em>享受购物折扣、分享返利</em></i>
+            </div>
+        </a>
+        <a href="/shop/buyvip.html" class="list next_select">
+            <div class="bd_bc1 heiauto">
+            <span><em>VIP库存</em></span>
+            <i><em>查看已购买的VIP</em></i>
+            </div>
+        </a>
+        <a href="javascript:void(0)http:html5" class="list next_select">
+          <div class="bd_bc1 heiauto">
+            <span><em>收货地址</em></span>
+          </div>
+        </a>
+        <a href="javascript:void(0)http://m.lemall.com/bounty/index.html" class="list next_select">
+          <div class="heiauto">
+            <span><em>分享邀请</em></span>
+            <i><em>可获得奖励</em></i>
+          </div>
+        </a>
+    </div>
+    <div class="mineBox">
+
+        <a href="/shop/lowerlevel.html" class="list next_select">
+            <div class="bd_bc1 heiauto">
+                <span><em>我的团队</em></span>
+                <i><em>成功邀请，并开通VIP的好友</em></i>
+            </div>
+        </a>
+
+        <a href="/shop/moneysource.html" class="list next_select">
+            <div class="bd_bc1 heiauto">
+              <span><em>分享回馈</em></span>
+              <i><em>获利明细表</em></i>
+            </div>
+        </a>
+
+        <a href="javascript:void(0)http://m.lemall.com/articles/index/id-47.html" class="list next_select">
+          <div class="bd_bc1 heiauto">
+            <span><em>商城公告</em></span>
+          </div>
+        </a>
+        
+        <a href="javascript:void(0)http://m.lemall.com/services/feedback.html" class="list next_select">
+          <div class="heiauto">
+            <span><em>意见反馈</em></span>
+          </div>
+        </a>
+    </div>
+    <a  id="logout" href="javascript:void(0)javascript:user.logout();" class="btn_foot mt40 hide"><em class="font28 red">退出登录</em></a>
+
+    <!--<div class="mg_lr1 mb20 mt40 hide" rel="hasLogin">
+        <a href="javascript:void(0)javascript:user.logout();" class="bt_m bt_red"><em class="font36">退出登录</em></a>
+	</div>-->
+</div>
+
+
+<div class="viewport clear pt36 pb30 footer-old" rel="default">
+	<div class="t_c">
+		<p><em class=" font26 gray4">©2018 链爱商城</em></p>
+	</div>
+</div>
+</body>
+</html>

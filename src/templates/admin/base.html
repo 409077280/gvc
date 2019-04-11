@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut  icon" href="__STATIC__/images/favicon.ico" type="image/x-icon" />
+  <meta charset="utf-8">
+  <!--刷新重定向
+  <meta http-equiv="refresh" content="0;url=https://www.cudag.com/"> 
+-->
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=0.33, maximum-scale=1, minimum-scale=0.33, user-scalable=yes">
+  <meta name="robots" content="all">
+  <meta name="author" content="L.M-Agnese">
+  <meta name="baidu-site-verification" content="dV6drpEsrB">
+  <meta name="Copyright" content="WeiXingShiShang">
+  <meta name="Description" content="简爱格妮斯内部管理系统">
+  <title>微星电子商务后台管理</title>
+  <link rel="stylesheet" type="text/css" href="__STATIC__/layui/css/layui.css" />
+{block name="style"}
+
+{/block}
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+
+
+  <!-- 头部区域（可配合layui已有的水平导航） --> 
+
+  <div class="layui-header">
+  	<a href="__ROOT__/" style="height: 60px;width: 200px;margin-left: 0">
+		<img src="__STATIC__/images/logo.jpg" style="width: 200px;height: 60px">
+  	</a>
+	 
+	<!--display or hide menu-->	
+	<!--
+	<div class="hideMenu" style="height: 100%">
+		<ul class="layui-nav layui-layout-left">
+			<li class="layui-nav-item">
+	          	<a href="javascript:;" class="iconfont hideMenu icon-menu1">
+					sgagadslksdagljk
+				</a>
+	      	</li>
+		</ul>
+	</div>
+	-->
+	<!-- guide list-->
+    <ul class="layui-nav layui-layout-left"> 
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <!--显示用户名-->
+        <a href="javascript:;" style="color: #11e297">{$Think.cookie.department}&nbsp;-&nbsp;{$Think.cookie.name}</a>
+        <dl class="layui-nav-child">
+          <dd><a href="">用户信息</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="/index/login">退出登录</a></li>
+    </ul>
+  </div>
+
+  <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+  <div class="layui-side layui-bg-black" style="color: white">
+    <div class="layui-side-scroll" style="color: white">
+      <!-- 垂直导航 -->
+    <ul class="layui-nav layui-nav-tree" lay-shrink="all">
+      {volist name="menus" id="menu"}
+      <li class="layui-nav-item" id="{$menu.id}">
+        <!--一级菜单名-->
+        <a href="javascript:;" style="font-family: '楷体'; font-size: 1.2em" ><i class="layui-icon">{$menu.ico}</i>&nbsp;&nbsp;{$menu.name}</a>
+        <ul class="layui-nav-child">
+          {volist name="menu.son" id="son_menu"}
+          <li class="layui-nav-item" id="{$son_menu.id}">
+            <!--二级菜单名-->
+            <a href="javascript:;" style="margin-left: 20px; font-family: '黑体';font-size: 1em;" ><i class="layui-icon">{$son_menu.ico}</i>&nbsp;&nbsp;{$son_menu.name}</a>
+            <ul class="layui-nav-child">
+              {volist name="son_menu.son" id="son_son_menu"}
+              <li id="{$son_son_menu.id}">
+                <!--三级菜单名-->
+                <a href="{$son_son_menu.url}" class="storage" style="margin-left: 30px;"><i class="layui-icon">&#xe623;</i>&nbsp;&nbsp;{$son_son_menu.name}</a>
+              </li>
+              {/volist}
+            </ul>
+          </li>
+          {/volist}
+        </ul>
+      </li>
+      {/volist}
+    </ul>
+
+    </div>
+  </div>
+
+<!--内容主体-->
+<div class="layui-body">
+    <!--内容导航-->
+<div class="layui-row" style="background: black;height: 45px; border-left: 0.5px solid white;">
+{block name="breadcrumb"}
+  <span  style="margin-left: 15px; line-height: 45px" class="layui-breadcrumb" lay-separator="-">
+    <a><span style="color:white;">主页</span></a>
+    <a><span style="color:white;">主页</span></a>
+    <a><span style="color:white;">主页</span></a>
+  </span>
+{/block}      
+</div>
+    <!-- 内容数据 -->
+<div style="padding: 15px;">
+{block name="data"}
+
+{/block}
+</div>
+
+</div>
+
+ <!-- 底部固定区域 -->
+<div class="layui-footer">
+   
+    © 底部区域。后续扩展使用
+</div>
+
+</div>
+<script src="__STATIC__/js/jquery-3.2.1.js"></script>
+<script src="__STATIC__/layer/layer.js"></script>
+<script src="__STATIC__/layui/layui.js"></script>
+<script>
+/*导航动态*/
+layui.use('element', function(){
+  var element = layui.element;
+});
+/*get menu id*/
+$('.storage').click(function(){
+	var thisLi_id = $(this).parent('li').attr('id');
+	/*存入本地session*/
+	sessionStorage.setItem('this_id', thisLi_id);
+	//var data = sessionStorage.getItem('this_id');
+	return true;
+});
+/*block old menu status*/
+var menuBlock = function(){
+	var this_id = sessionStorage.getItem('this_id');
+	var parents_id = new Array();
+	if (this_id != null) {
+		parents_id = $('#'+this_id).parents('li');
+		for( x of parents_id){
+			$('#'+x.id).attr("class","layui-nav-item layui-nav-itemed");
+		}
+		$('#'+this_id).children("a").css({"color":"#11e297"});
+		$('#'+this_id).children("a").children("i.layui-icon").attr('class','layui-icon layui-anim layui-anim-rotate layui-anim-loop');
+		$('#'+this_id).children("a").children("i.layui-icon").html("&#xe63e;");
+	}
+}();
+</script>
+
+{block name="script"}
+<script>
+
+</script>
+{/block}
+
+</body>
+</html>

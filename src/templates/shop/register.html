@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>链爱商城注册</title>
+    <link rel="stylesheet" href="/static/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/login.css"/>
+</head>
+<body>
+    <div id="login"></div>
+    <div class="login_bg">
+        <div id="logo">
+            <img src="/static/images/logo.png" alt=""/>
+        </div>
+        <form action="">
+            <div class="userName">
+                <lable><span style="color:red">*</span>手&nbsp;机&nbsp;号</lable>
+                <input type="text" name="name" pattern="[1][0-9]{10}" required/>
+            </div>
+            <div class="middle">
+                <lable><span style="color:red">*</span>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</lable>
+                <input type="password" name="password" pattern="[0-9A-Za-z]{6,25}" required/>
+            </div>
+            <div class="middle">
+                <lable><span style="color:red">*</span>确认密码</lable>
+                <input type="password" name="password" pattern="[0-9A-Za-z]{6,25}" required/>
+            </div>
+            <div class="middle">
+                <lable><span style="color:red">*</span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</lable>
+                <input type="text" name="name" pattern="\w{2,8}" required/>
+            </div>
+            <div class="middle">
+                <lable>邀&nbsp;&nbsp;请&nbsp;&nbsp;人</lable>
+                <input type="text" name="name" pattern="[1][0-9]{10}" required/>
+            </div>
+            <div class="passWord">
+                <input type="text" name="name" placeholder="请输入验证码" pattern="[1][0-9]{10}" required/>
+                <button id="getCode" submit="false" style="background:#4c4c7b; color: white; border-radius:0.45em; font-size: 0.9em">获取验证码</button>
+            </div>
+            <div class="choose_box">
+                <div>
+                    <lable><span style="color:red">*</span> <span style="font-size: 0.8em; color: rgb(190, 201, 37)">为必填项,“邀请人”请填写邀请者手机号</span></lable>
+                </div>
+            </div>
+            <button class="login_btn" type="submit">注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;册</button>
+            <a class="register_btn" href="/shop/login.html" type="submit" style="margin_top: 20px">返&nbsp;回&nbsp;登&nbsp;录</a>
+        </form>
+    </div>
+</body>
+</html>
